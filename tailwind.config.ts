@@ -12,7 +12,6 @@ export default {
       fontFamily: {
         body: ['Inter', 'sans-serif'],
         headline: ['Inter', 'sans-serif'],
-        code: ['monospace'],
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -92,6 +91,9 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      transformStyle: {
+        '3d': 'preserve-3d',
       },
     },
   },
