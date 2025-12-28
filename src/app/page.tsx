@@ -73,9 +73,10 @@ const PROJECTS = [
 
 // 1. Status Bar (Time, Battery, Wifi)
 const StatusBar = () => {
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
+    setTime(new Date());
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
@@ -87,7 +88,7 @@ const StatusBar = () => {
   return (
     <div className="w-full flex justify-between items-center px-6 py-3 text-white text-xs font-medium z-50 mix-blend-overlay">
       <div className="flex items-center space-x-2">
-        <span>{formatTime(time)}</span>
+        {time ? <span>{formatTime(time)}</span> : <span>&nbsp;</span>}
       </div>
       <div className="flex items-center space-x-2">
         <Signal size={14} />
