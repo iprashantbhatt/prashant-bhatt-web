@@ -4,14 +4,71 @@ import {
   Wifi, 
   Battery, 
   Signal, 
-  ChevronUp,
+  Instagram, 
+  Linkedin, 
+  Github, 
+  Twitter, 
+  Mail, 
+  Briefcase, 
+  Cpu, 
+  Code, 
+  Zap, 
+  ChevronUp, 
+  ExternalLink,
+  Layers,
   Terminal,
+  Smartphone
 } from 'lucide-react';
-import AppIcon from '@/components/os/AppIcon';
-import ProjectCard from '@/components/os/ProjectCard';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { socialLinks } from '@/lib/social-links';
-import { projectsData } from '@/lib/projects';
+
+/* --- ASSETS & CONSTANTS --- 
+  Replace these URLs with your actual profile image and background.
+*/
+const PROFILE_IMAGE = "/profile-pic.jpg"; 
+const WALLPAPER_URL = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop";
+
+const SOCIAL_LINKS = [
+  { id: 'instagram', icon: Instagram, label: 'Instagram', color: 'from-pink-500 to-purple-600', link: '#' },
+  { id: 'linkedin', icon: Linkedin, label: 'LinkedIn', color: 'from-blue-600 to-blue-800', link: '#' },
+  { id: 'github', icon: Github, label: 'GitHub', color: 'from-gray-700 to-gray-900', link: '#' },
+  { id: 'twitter', icon: Twitter, label: 'X', color: 'from-gray-900 to-black', link: '#' },
+  { id: 'blog', icon: Layers, label: 'Blog', color: 'from-orange-400 to-red-500', link: '#' },
+  { id: 'email', icon: Mail, label: 'Contact', color: 'from-green-400 to-green-600', link: 'mailto:hello@prashantbhatt.com' },
+];
+
+const PROJECTS = [
+  {
+    id: 1,
+    title: "Neuro-AI Agent",
+    category: "AI Architecture",
+    icon: Cpu,
+    color: "bg-blue-500",
+    description: "Autonomous reasoning engine capable of multi-step problem solving with recursive self-correction."
+  },
+  {
+    id: 2,
+    title: "Flux UI Kit",
+    category: "Design System",
+    icon: Layers,
+    color: "bg-purple-500",
+    description: "A comprehensive React component library focusing on glassmorphism and fluid animations."
+  },
+  {
+    id: 3,
+    title: "Echo Voice Assistant",
+    category: "Machine Learning",
+    icon: Zap,
+    color: "bg-yellow-500",
+    description: "Real-time natural language processing interface with < 100ms latency on edge devices."
+  },
+  {
+    id: 4,
+    title: "Quantum Pay",
+    category: "FinTech App",
+    icon: Smartphone,
+    color: "bg-green-500",
+    description: "Secure, decentralized payment gateway prototype built on Solana."
+  }
+];
 
 /* --- COMPONENTS --- */
 
@@ -45,12 +102,59 @@ const StatusBar = () => {
   );
 };
 
+// 2. 3D App Icon
+const AppIcon = ({ icon: Icon, label, color, link, onClick }: {icon: React.ElementType, label: string, color: string, link: string, onClick?: () => void}) => {
+  return (
+    <a 
+      href={link} 
+      onClick={onClick}
+      className="group flex flex-col items-center gap-2 cursor-pointer transition-transform duration-300 hover:scale-105 active:scale-95"
+    >
+      <div className={`
+        relative w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl 
+        bg-gradient-to-br ${color} 
+        flex items-center justify-center 
+        shadow-lg shadow-black/20 
+        transform transition-all duration-500
+        group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-${color.split('-')[1]}-500/40
+        before:content-[''] before:absolute before:inset-0 before:bg-white/20 before:rounded-2xl before:opacity-0 group-hover:before:opacity-100 before:transition-opacity
+      `}>
+        <Icon className="text-white w-8 h-8 md:w-10 md:h-10 drop-shadow-md" strokeWidth={1.5} />
+        {/* Glossy reflection effect */}
+        <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-2xl md:rounded-t-3xl pointer-events-none" />
+      </div>
+      <span className="text-xs md:text-sm text-white font-medium tracking-tight drop-shadow-md opacity-90 group-hover:opacity-100">
+        {label}
+      </span>
+    </a>
+  );
+};
+
+// 3. Project Card (Glassmorphism)
+const ProjectCard = ({ project }: { project: typeof PROJECTS[0]}) => {
+  return (
+    <div className="group relative overflow-hidden rounded-3xl bg-white/10 border border-white/20 backdrop-blur-md p-6 transition-all duration-500 hover:bg-white/20 hover:scale-[1.02] cursor-pointer">
+      <div className="flex items-start justify-between mb-4">
+        <div className={`p-3 rounded-2xl ${project.color} shadow-lg shadow-black/10`}>
+          <project.icon className="text-white w-6 h-6" />
+        </div>
+        <div className="bg-white/10 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <ExternalLink className="text-white w-4 h-4" />
+        </div>
+      </div>
+      
+      <h3 className="text-xl font-bold text-white mb-1 tracking-tight">{project.title}</h3>
+      <p className="text-xs text-blue-200 font-semibold uppercase tracking-wider mb-3">{project.category}</p>
+      <p className="text-sm text-white/80 leading-relaxed">{project.description}</p>
+      
+      {/* Hover Light Effect */}
+      <div className="absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine" />
+    </div>
+  );
+};
 
 export default function App() {
   const [page, setPage] = useState(0); // 0 = Home, 1 = Work
-  
-  const profileImage = PlaceHolderImages.find(p => p.id === 'prashant-profile');
-  const wallpaper = PlaceHolderImages.find(p => p.id === 'os-wallpaper');
   
   // Handle scroll/wheel for desktop
   useEffect(() => {
@@ -92,13 +196,13 @@ export default function App() {
       onTouchEnd={onTouchEnd}
     >
       {/* Background Wallpaper */}
-      {wallpaper && <div 
+      <div 
         className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-in-out scale-105"
         style={{ 
-          backgroundImage: `url(${wallpaper.imageUrl})`,
+          backgroundImage: `url(${WALLPAPER_URL})`,
           filter: page === 1 ? 'blur(20px) brightness(0.6)' : 'blur(0px) brightness(1)'
         }}
-      />}
+      />
       
       {/* Overlay Gradient for depth */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/40 pointer-events-none" />
@@ -122,11 +226,11 @@ export default function App() {
               {/* 3D Profile Picture */}
               <div className="group relative w-32 h-32 md:w-48 md:h-48 mb-8 perspective-1000">
                 <div className="w-full h-full rounded-full p-1 bg-white/20 backdrop-blur-sm shadow-2xl transition-transform duration-500 group-hover:rotate-y-12 group-hover:rotate-x-12 cursor-pointer">
-                   {profileImage && <img 
-                    src={profileImage.imageUrl} 
+                   <img 
+                    src={PROFILE_IMAGE} 
                     alt="Prashant Bhatt" 
                     className="w-full h-full rounded-full object-cover border-4 border-white/10 shadow-inner"
-                  />}
+                  />
                   {/* Status Indicator */}
                   <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 border-4 border-black/20 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.6)]" />
                 </div>
@@ -145,9 +249,24 @@ export default function App() {
 
             {/* App Grid */}
             <div className="grid grid-cols-3 md:grid-cols-6 gap-y-8 gap-x-4 md:gap-8 max-w-4xl mx-auto pb-24 md:pb-32">
-              {socialLinks.map((app) => (
-                <AppIcon key={app.name} link={app} />
+              {SOCIAL_LINKS.map((app) => (
+                <AppIcon key={app.id} {...app} />
               ))}
+            </div>
+
+            {/* Dock (Desktop Only style visual, but functional on all) */}
+            <div className="absolute bottom-6 left-0 right-0 flex justify-center pb-safe">
+               <div className="mx-auto bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[2rem] p-4 flex gap-6 shadow-2xl">
+                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-transform">
+                    <Mail className="text-white" size={24} />
+                 </div>
+                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-transform">
+                    <Briefcase className="text-white" size={24} />
+                 </div>
+                 <div className="w-12 h-12 rounded-xl bg-gray-800 flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-transform">
+                    <Github className="text-white" size={24} />
+                 </div>
+               </div>
             </div>
 
             {/* Swipe Indicator */}
@@ -181,7 +300,7 @@ export default function App() {
 
               {/* Project Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
-                {projectsData.map((project) => (
+                {PROJECTS.map((project) => (
                   <ProjectCard key={project.id} project={project} />
                 ))}
               </div>
