@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { 
   Wifi, 
   Battery, 
@@ -20,10 +21,8 @@ import {
   Smartphone
 } from 'lucide-react';
 
-/* --- ASSETS & CONSTANTS --- 
-  Replace these URLs with your actual profile image and background.
-*/
-const PROFILE_IMAGE = "/profile-pic.jpg"; 
+/* --- ASSETS & CONSTANTS --- */
+const PROFILE_IMAGE_URL = "/profile.jpg"; 
 const WALLPAPER_URL = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop";
 
 const SOCIAL_LINKS = [
@@ -225,10 +224,12 @@ export default function App() {
               
               {/* 3D Profile Picture */}
               <div className="group relative w-32 h-32 md:w-48 md:h-48 mb-8 perspective-1000">
-                <div className="w-full h-full rounded-full p-1 bg-white/20 backdrop-blur-sm shadow-2xl transition-transform duration-500 group-hover:rotate-y-12 group-hover:rotate-x-12 cursor-pointer">
-                   <img 
-                    src={PROFILE_IMAGE} 
-                    alt="Prashant Bhatt" 
+                <div className="relative w-full h-full rounded-full p-1 bg-white/20 backdrop-blur-sm shadow-2xl transition-transform duration-500 group-hover:rotate-y-12 group-hover:rotate-x-12 cursor-pointer transform-style-3d">
+                   <Image 
+                    src={PROFILE_IMAGE_URL}
+                    alt="Prashant Bhatt"
+                    width={192}
+                    height={192} 
                     className="w-full h-full rounded-full object-cover border-4 border-white/10 shadow-inner"
                   />
                   {/* Status Indicator */}
@@ -325,5 +326,3 @@ export default function App() {
     </div>
   );
 }
-
-    
