@@ -103,11 +103,12 @@ const StatusBar = () => {
 };
 
 // 2. 3D App Icon
-const AppIcon = ({ icon: Icon, label, color, link, onClick }: {icon: React.ElementType, label: string, color: string, link: string, onClick?: () => void}) => {
+const AppIcon = ({ icon: Icon, label, color, link, onClick, style }: {icon: React.ElementType, label: string, color: string, link: string, onClick?: () => void, style?: React.CSSProperties }) => {
   return (
     <a 
       href={link} 
       onClick={onClick}
+      style={style}
       className="group flex flex-col items-center gap-2 cursor-pointer transition-transform duration-300 hover:scale-110 active:scale-95 animate-float"
     >
       <div className={`
@@ -189,7 +190,7 @@ export default function App() {
   };
 
   return (
-    <div className="w-full my-8 md:my-12 transform-style-3d rotate-x-12 -rotate-y-8 hover:rotate-x-0 hover:rotate-y-0 transition-transform duration-500">
+    <div className="w-full my-8 md:my-12 transform-style-3d transition-transform duration-500">
       <div 
         className="relative w-full max-w-sm md:max-w-4xl mx-auto h-[80vh] md:h-auto md:aspect-[4/3] rounded-[2rem] md:rounded-[4rem] overflow-hidden bg-black font-sans selection:bg-blue-500/30 shadow-2xl shadow-black/50 border-4 border-gray-800"
         onTouchStart={onTouchStart}
