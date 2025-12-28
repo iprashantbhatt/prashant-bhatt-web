@@ -246,7 +246,7 @@ export default function App() {
                     Prashant Bhatt
                   </h1>
                   <p className="text-lg md:text-xl text-white/80 font-light tracking-wide flex items-center justify-center gap-2">
-                    <Terminal size={16} /> Full Stack Developer & AI Engineer
+                    <Terminal size={16} /> Banking Professional Exploring AI Agents &amp; LLMs | Python | Solidity | Building FinTech Automation Tools
                   </p>
                 </div>
               </div>
@@ -292,7 +292,7 @@ export default function App() {
                 <div className="flex items-center justify-between mb-12">
                   <div>
                     <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">Projects</h2>
-                    <p className="text-white/60">Selected works & experiments</p>
+                    <p className="text-white/60">Selected works &amp; experiments</p>
                   </div>
                   <button 
                     onClick={() => setPage(0)}
