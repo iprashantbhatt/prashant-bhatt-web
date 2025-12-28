@@ -40,3 +40,26 @@
     @apply bg-background text-foreground;
   }
 }
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.perspective-1000 {
+  perspective: 1000px;
+}
+.rotate-y-12 {
+  transform: rotateY(12deg);
+}
+/* Custom Scrollbar for Work Page */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0px; 
+  background: transparent; 
+}
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+.animate-shine {
+  animation: shine 1s;
+}

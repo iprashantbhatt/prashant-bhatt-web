@@ -1,19 +1,45 @@
-import type { SummarizeAiProjectsInput } from '@/ai/flows/summarize-ai-projects';
+import { Cpu, Layers, Zap, Smartphone, LucideIcon } from 'lucide-react';
 
-export const projectsData: SummarizeAiProjectsInput = [
+export type Project = {
+    id: number;
+    title: string;
+    category: string;
+    icon: LucideIcon;
+    color: string;
+    description: string;
+}
+
+export const projectsData: Project[] = [
   {
-    title: 'GenAI Web App Generator',
-    description: 'A platform that uses generative AI to create full-stack web applications from a simple prompt. It handles everything from UI design to backend logic and database schema.',
-    features: ['AI-powered code generation', 'Customizable templates', 'Real-time preview', 'Database integration'],
+    id: 1,
+    title: "Neuro-AI Agent",
+    category: "AI Architecture",
+    icon: Cpu,
+    color: "bg-blue-500",
+    description: "Autonomous reasoning engine capable of multi-step problem solving with recursive self-correction."
   },
   {
-    title: 'Personalized Content Engine',
-    description: 'An AI-driven system that analyzes user behavior and referral data to dynamically personalize website content, improving engagement and conversion rates.',
-    features: ['Real-time personalization', 'A/B testing for suggestions', 'Integration with analytics platforms', 'Content suggestion API'],
+    id: 2,
+    title: "Flux UI Kit",
+    category: "Design System",
+    icon: Layers,
+    color: "bg-purple-500",
+    description: "A comprehensive React component library focusing on glassmorphism and fluid animations."
   },
   {
-    title: 'PrashantGPT',
-    description: 'An AI chatbot assistant powered by Google\'s Gemini model, trained to answer questions about Prashant Bhatt\'s professional background, skills, and projects.',
-    features: ['Natural Language Understanding', 'Context-aware responses', 'Extensible knowledge base', 'Interactive chat interface'],
+    id: 3,
+    title: "Echo Voice Assistant",
+    category: "Machine Learning",
+    icon: Zap,
+    color: "bg-yellow-500",
+    description: "Real-time natural language processing interface with < 100ms latency on edge devices."
+  },
+  {
+    id: 4,
+    title: "Quantum Pay",
+    category: "FinTech App",
+    icon: Smartphone,
+    color: "bg-green-500",
+    description: "Secure, decentralized payment gateway prototype built on Solana."
   }
 ];
