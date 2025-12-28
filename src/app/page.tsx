@@ -197,9 +197,6 @@ export default function App() {
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        {/* Notch for iPhone-like appearance */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-xl z-50 md:hidden" />
-        
         {/* Background Wallpaper */}
         <div 
           className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-in-out scale-105"
