@@ -37,7 +37,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-to-br from-gray-900 via-gray-800 to-black text-foreground;
   }
 }
 
@@ -49,6 +49,15 @@
 }
 .rotate-y-12 {
   transform: rotateY(12deg);
+}
+.rotate-x-12 {
+    transform: rotateX(12deg);
+}
+.transform-style-3d {
+    transform-style: preserve-3d;
+}
+.-rotate-y-8 {
+    transform: rotateY(-8deg);
 }
 /* Custom Scrollbar for Work Page */
 .custom-scrollbar::-webkit-scrollbar {
@@ -62,4 +71,17 @@
 }
 .animate-shine {
   animation: shine 1s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
 }

@@ -108,7 +108,7 @@ const AppIcon = ({ icon: Icon, label, color, link, onClick }: {icon: React.Eleme
     <a 
       href={link} 
       onClick={onClick}
-      className="group flex flex-col items-center gap-2 cursor-pointer transition-transform duration-300 hover:scale-105 active:scale-95"
+      className="group flex flex-col items-center gap-2 cursor-pointer transition-transform duration-300 hover:scale-110 active:scale-95 animate-float"
     >
       <div className={`
         relative w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl 
@@ -189,139 +189,144 @@ export default function App() {
   };
 
   return (
-    <div 
-      className="relative w-full h-screen overflow-hidden bg-black font-sans selection:bg-blue-500/30"
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
-    >
-      {/* Background Wallpaper */}
+    <div className="w-full my-8 md:my-12 transform-style-3d rotate-x-12 -rotate-y-8 hover:rotate-x-0 hover:rotate-y-0 transition-transform duration-500">
       <div 
-        className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-in-out scale-105"
-        style={{ 
-          backgroundImage: `url(${WALLPAPER_URL})`,
-          filter: page === 1 ? 'blur(20px) brightness(0.6)' : 'blur(0px) brightness(1)'
-        }}
-      />
-      
-      {/* Overlay Gradient for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/40 pointer-events-none" />
-
-      {/* Main Container */}
-      <div className="relative z-10 w-full h-full flex flex-col">
-        <StatusBar />
-
-        {/* Dynamic Content Area with Slide Transition */}
+        className="relative w-full max-w-sm md:max-w-4xl mx-auto h-[80vh] md:h-auto md:aspect-[4/3] rounded-[2rem] md:rounded-[4rem] overflow-hidden bg-black font-sans selection:bg-blue-500/30 shadow-2xl shadow-black/50 border-4 border-gray-800"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        {/* Notch for iPhone-like appearance */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-xl z-50 md:hidden" />
+        
+        {/* Background Wallpaper */}
         <div 
-          className="flex-1 w-full relative transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
-          style={{ transform: `translateY(-${page * 100}%)` }}
-        >
-          
-          {/* --- PAGE 1: HOME / IDENTITY --- */}
-          <div className="absolute top-0 left-0 w-full h-full flex flex-col p-6 md:p-12">
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-in-out scale-105"
+          style={{ 
+            backgroundImage: `url(${WALLPAPER_URL})`,
+            filter: page === 1 ? 'blur(20px) brightness(0.6)' : 'blur(0px) brightness(1)'
+          }}
+        />
+        
+        {/* Overlay Gradient for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/40 pointer-events-none" />
+
+        {/* Main Container */}
+        <div className="relative z-10 w-full h-full flex flex-col">
+          <StatusBar />
+
+          {/* Dynamic Content Area with Slide Transition */}
+          <div 
+            className="flex-1 w-full relative transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
+            style={{ transform: `translateY(-${page * 100}%)` }}
+          >
             
-            {/* Identity Section */}
-            <div className="flex-1 flex flex-col items-center justify-center mt-[-60px] md:mt-0">
+            {/* --- PAGE 1: HOME / IDENTITY --- */}
+            <div className="absolute top-0 left-0 w-full h-full flex flex-col p-6 md:p-12">
               
-              {/* 3D Profile Picture */}
-              <div className="group relative w-32 h-32 md:w-48 md:h-48 mb-8 perspective-1000">
-                <div className="relative w-full h-full rounded-full p-1 bg-white/20 backdrop-blur-sm shadow-2xl transition-transform duration-500 group-hover:rotate-y-12 group-hover:rotate-x-12 cursor-pointer transform-style-3d">
-                   <Image 
-                    src={PROFILE_IMAGE_URL}
-                    alt="Prashant Bhatt"
-                    width={192}
-                    height={192} 
-                    className="w-full h-full rounded-full object-cover border-4 border-white/10 shadow-inner"
-                  />
-                  {/* Status Indicator */}
-                  <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 border-4 border-black/20 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.6)]" />
+              {/* Identity Section */}
+              <div className="flex-1 flex flex-col items-center justify-center mt-[-60px] md:mt-0">
+                
+                {/* 3D Profile Picture */}
+                <div className="group relative w-32 h-32 md:w-48 md:h-48 mb-8 perspective-1000">
+                  <div className="relative w-full h-full rounded-full p-1 bg-white/20 backdrop-blur-sm shadow-2xl transition-transform duration-500 group-hover:rotate-y-12 group-hover:rotate-x-12 cursor-pointer transform-style-3d">
+                     <Image 
+                      src={PROFILE_IMAGE_URL}
+                      alt="Prashant Bhatt"
+                      width={192}
+                      height={192} 
+                      className="w-full h-full rounded-full object-cover border-4 border-white/10 shadow-inner"
+                    />
+                    {/* Status Indicator */}
+                    <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 border-4 border-black/20 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.6)]" />
+                  </div>
+                </div>
+
+                {/* Typography */}
+                <div className="text-center space-y-2">
+                  <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight drop-shadow-lg">
+                    Prashant Bhatt
+                  </h1>
+                  <p className="text-lg md:text-xl text-white/80 font-light tracking-wide flex items-center justify-center gap-2">
+                    <Terminal size={16} /> Full Stack Developer & AI Engineer
+                  </p>
                 </div>
               </div>
 
-              {/* Typography */}
-              <div className="text-center space-y-2">
-                <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight drop-shadow-lg">
-                  Prashant Bhatt
-                </h1>
-                <p className="text-lg md:text-xl text-white/80 font-light tracking-wide flex items-center justify-center gap-2">
-                  <Terminal size={16} /> Full Stack Developer & AI Engineer
-                </p>
-              </div>
-            </div>
-
-            {/* App Grid */}
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-y-8 gap-x-4 md:gap-8 max-w-4xl mx-auto pb-24 md:pb-32">
-              {SOCIAL_LINKS.map((app) => (
-                <AppIcon key={app.id} {...app} />
-              ))}
-            </div>
-
-            {/* Dock (Desktop Only style visual, but functional on all) */}
-            <div className="absolute bottom-6 left-0 right-0 flex justify-center pb-safe">
-               <div className="mx-auto bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[2rem] p-4 flex gap-6 shadow-2xl">
-                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-transform">
-                    <Mail className="text-white" size={24} />
-                 </div>
-                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-transform">
-                    <Briefcase className="text-white" size={24} />
-                 </div>
-                 <div className="w-12 h-12 rounded-xl bg-gray-800 flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-transform">
-                    <Github className="text-white" size={24} />
-                 </div>
-               </div>
-            </div>
-
-            {/* Swipe Indicator */}
-            <div 
-              className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
-              onClick={() => setPage(1)}
-            >
-              <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Up</span>
-              <ChevronUp size={24} />
-            </div>
-          </div>
-
-          {/* --- PAGE 2: WORK / DEVELOPER --- */}
-          <div className="absolute top-[100%] left-0 w-full h-full flex flex-col overflow-y-auto custom-scrollbar">
-            
-            <div className="w-full max-w-6xl mx-auto px-6 pt-20 pb-12">
-              
-              {/* Header */}
-              <div className="flex items-center justify-between mb-12">
-                <div>
-                  <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">Projects</h2>
-                  <p className="text-white/60">Selected works & experiments</p>
-                </div>
-                <button 
-                  onClick={() => setPage(0)}
-                  className="p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md transition-colors text-white"
-                >
-                  <ChevronUp className="rotate-180" size={24} />
-                </button>
-              </div>
-
-              {/* Project Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
-                {PROJECTS.map((project) => (
-                  <ProjectCard key={project.id} project={project} />
+              {/* App Grid */}
+              <div className="grid grid-cols-3 md:grid-cols-6 gap-y-8 gap-x-4 md:gap-8 max-w-4xl mx-auto pb-24 md:pb-32">
+                {SOCIAL_LINKS.map((app, i) => (
+                  <AppIcon key={app.id} {...app} style={{ animationDelay: `${i * 100}ms` }} />
                 ))}
               </div>
 
-              {/* Additional Section: Tech Stack */}
-              <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
-                <h3 className="text-2xl font-bold text-white mb-6">Technologies</h3>
-                <div className="flex flex-wrap gap-3">
-                  {['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'TensorFlow', 'Three.js', 'Tailwind', 'PostgreSQL', 'Docker', 'AWS'].map((tech) => (
-                    <span key={tech} className="px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium hover:bg-white/20 cursor-default transition-colors border border-white/5">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+              {/* Dock (Desktop Only style visual, but functional on all) */}
+              <div className="absolute bottom-6 left-0 right-0 flex justify-center pb-safe">
+                 <div className="mx-auto bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[2rem] p-4 flex gap-6 shadow-2xl">
+                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-transform">
+                      <Mail className="text-white" size={24} />
+                   </div>
+                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-transform">
+                      <Briefcase className="text-white" size={24} />
+                   </div>
+                   <div className="w-12 h-12 rounded-xl bg-gray-800 flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-transform">
+                      <Github className="text-white" size={24} />
+                   </div>
+                 </div>
               </div>
 
+              {/* Swipe Indicator */}
+              <div 
+                className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
+                onClick={() => setPage(1)}
+              >
+                <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Up</span>
+                <ChevronUp size={24} />
+              </div>
             </div>
-          </div>
 
+            {/* --- PAGE 2: WORK / DEVELOPER --- */}
+            <div className="absolute top-[100%] left-0 w-full h-full flex flex-col overflow-y-auto custom-scrollbar">
+              
+              <div className="w-full max-w-6xl mx-auto px-6 pt-20 pb-12">
+                
+                {/* Header */}
+                <div className="flex items-center justify-between mb-12">
+                  <div>
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">Projects</h2>
+                    <p className="text-white/60">Selected works & experiments</p>
+                  </div>
+                  <button 
+                    onClick={() => setPage(0)}
+                    className="p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md transition-colors text-white"
+                  >
+                    <ChevronUp className="rotate-180" size={24} />
+                  </button>
+                </div>
+
+                {/* Project Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
+                  {PROJECTS.map((project) => (
+                    <ProjectCard key={project.id} project={project} />
+                  ))}
+                </div>
+
+                {/* Additional Section: Tech Stack */}
+                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
+                  <h3 className="text-2xl font-bold text-white mb-6">Technologies</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'TensorFlow', 'Three.js', 'Tailwind', 'PostgreSQL', 'Docker', 'AWS'].map((tech) => (
+                      <span key={tech} className="px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium hover:bg-white/20 cursor-default transition-colors border border-white/5">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
