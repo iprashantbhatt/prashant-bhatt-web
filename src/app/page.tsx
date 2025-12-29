@@ -26,12 +26,12 @@ const PROFILE_IMAGE_URL = "/profile.jpg";
 const WALLPAPER_URL = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop";
 
 const SOCIAL_LINKS = [
-  { id: 'instagram', icon: Instagram, label: 'Instagram', color: 'from-pink-500 to-purple-600', link: '#' },
-  { id: 'linkedin', icon: Linkedin, label: 'LinkedIn', color: 'from-blue-600 to-blue-800', link: '#' },
-  { id: 'github', icon: Github, label: 'GitHub', color: 'from-gray-700 to-gray-900', link: '#' },
-  { id: 'twitter', icon: Twitter, label: 'X', color: 'from-gray-900 to-black', link: '#' },
-  { id: 'blog', icon: Layers, label: 'Blog', color: 'from-orange-400 to-red-500', link: '#' },
-  { id: 'email', icon: Mail, label: 'Contact', color: 'from-green-400 to-green-600', link: 'mailto:hello@prashantbhatt.com' },
+  { id: 'instagram', icon: Instagram, label: 'Instagram', color: 'from-pink-500 to-purple-600', link: 'https://www.instagram.com/iprashantbhatt?igsh=MXVobGE2Y2k5MjdiaQ%3D%3D&utm_source=qr' },
+  { id: 'linkedin', icon: Linkedin, label: 'LinkedIn', color: 'from-blue-600 to-blue-800', link: 'https://www.linkedin.com/in/prashantbhatt1/' },
+  { id: 'github', icon: Github, label: 'GitHub', color: 'from-gray-700 to-gray-900', link: 'https://github.com/iprashantbhatt' },
+  { id: 'twitter', icon: Twitter, label: 'X', color: 'from-gray-900 to-black', link: 'https://x.com/iamprashantb' },
+  { id: 'blog', icon: Layers, label: 'Blog', color: 'from-orange-400 to-red-500', link: 'https://prashantbhatt.net/' },
+  { id: 'email', icon: Mail, label: 'Contact', color: 'from-green-400 to-green-600', link: 'mailto:info@prashantbhatt.net' },
 ];
 
 const PROJECTS = [
@@ -157,17 +157,6 @@ const ProjectCard = ({ project }: { project: typeof PROJECTS[0]}) => {
 export default function App() {
   const [page, setPage] = useState(0); // 0 = Home, 1 = Work
   
-  // Handle scroll/wheel for desktop
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      if (e.deltaY > 50 && page === 0) setPage(1);
-      if (e.deltaY < -50 && page === 1) setPage(0);
-    };
-    
-    window.addEventListener('wheel', handleWheel);
-    return () => window.removeEventListener('wheel', handleWheel);
-  }, [page]);
-
   // Touch handlers for mobile swipe
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -256,21 +245,6 @@ export default function App() {
                 {SOCIAL_LINKS.map((app, i) => (
                   <AppIcon key={app.id} {...app} style={{ animationDelay: `${i * 100}ms` }} />
                 ))}
-              </div>
-
-              {/* Dock (Desktop Only style visual, but functional on all) */}
-              <div className="absolute bottom-6 left-0 right-0 flex justify-center pb-safe">
-                 <div className="mx-auto bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[2rem] p-4 flex gap-6 shadow-2xl">
-                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-transform">
-                      <Mail className="text-white" size={24} />
-                   </div>
-                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-transform">
-                      <Briefcase className="text-white" size={24} />
-                   </div>
-                   <div className="w-12 h-12 rounded-xl bg-gray-800 flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-transform">
-                      <Github className="text-white" size={24} />
-                   </div>
-                 </div>
               </div>
 
               {/* Swipe Indicator */}
