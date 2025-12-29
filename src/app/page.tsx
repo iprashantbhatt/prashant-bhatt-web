@@ -21,139 +21,16 @@ import {
   Terminal,
   Smartphone
 } from 'lucide-react';
+import StatusBar from '@/components/os/StatusBar';
+import AppIcon from '@/components/os/AppIcon';
+import ProjectCard from '@/components/os/ProjectCard';
+import { socialLinks } from '@/lib/social-links';
+import { projectsData } from '@/lib/projects';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 /* --- ASSETS & CONSTANTS --- */
-const PROFILE_IMAGE_URL = "/profile.jpg"; 
-const WALLPAPER_URL = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop";
-
-const SOCIAL_LINKS = [
-  { id: 'instagram', icon: Instagram, label: 'Instagram', color: 'from-pink-500 to-purple-600', link: 'https://www.instagram.com/iprashantbhatt?igsh=MXVobGE2Y2k5MjdiaQ%3D%3D&utm_source=qr' },
-  { id: 'linkedin', icon: Linkedin, label: 'LinkedIn', color: 'from-blue-600 to-blue-800', link: 'https://www.linkedin.com/in/prashantbhatt1/' },
-  { id: 'github', icon: Github, label: 'GitHub', color: 'from-gray-700 to-gray-900', link: 'https://github.com/iprashantbhatt' },
-  { id: 'twitter', icon: Twitter, label: 'X', color: 'from-gray-900 to-black', link: 'https://x.com/iamprashantb' },
-  { id: 'blog', icon: Layers, label: 'Blog', color: 'from-orange-400 to-red-500', link: 'https://prashantbhatt.net/' },
-  { id: 'email', icon: Mail, label: 'Contact', color: 'from-green-400 to-green-600', link: 'mailto:info@prashantbhatt.net' },
-];
-
-const PROJECTS = [
-  {
-    id: 1,
-    title: "Neuro-AI Agent",
-    category: "AI Architecture",
-    icon: Cpu,
-    color: "bg-blue-500",
-    description: "Autonomous reasoning engine capable of multi-step problem solving with recursive self-correction."
-  },
-  {
-    id: 2,
-    title: "Flux UI Kit",
-    category: "Design System",
-    icon: Layers,
-    color: "bg-purple-500",
-    description: "A comprehensive React component library focusing on glassmorphism and fluid animations."
-  },
-  {
-    id: 3,
-    title: "Echo Voice Assistant",
-    category: "Machine Learning",
-    icon: Zap,
-    color: "bg-yellow-500",
-    description: "Real-time natural language processing interface with < 100ms latency on edge devices."
-  },
-  {
-    id: 4,
-    title: "Quantum Pay",
-    category: "FinTech App",
-    icon: Smartphone,
-    color: "bg-green-500",
-    description: "Secure, decentralized payment gateway prototype built on Solana."
-  }
-];
-
-/* --- COMPONENTS --- */
-
-// 1. Status Bar (Time, Battery, Wifi)
-const StatusBar = () => {
-  const [time, setTime] = useState<Date | null>(null);
-
-  useEffect(() => {
-    setTime(new Date());
-    const timer = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  };
-
-  return (
-    <div className="w-full flex justify-between items-center px-6 py-3 text-white text-xs font-medium z-50 mix-blend-overlay">
-      <div className="flex items-center space-x-2">
-        {time ? <span>{formatTime(time)}</span> : <span>&nbsp;</span>}
-      </div>
-      <div className="flex items-center space-x-2">
-        <Signal size={14} />
-        <Wifi size={14} />
-        <div className="flex items-center space-x-1">
-          <span>100%</span>
-          <Battery size={16} className="text-white" />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// 2. 3D App Icon
-const AppIcon = ({ icon: Icon, label, color, link, onClick, style }: {icon: React.ElementType, label: string, color: string, link: string, onClick?: () => void, style?: React.CSSProperties }) => {
-  return (
-    <a 
-      href={link} 
-      onClick={onClick}
-      style={style}
-      className="group flex flex-col items-center gap-2 cursor-pointer transition-transform duration-300 hover:scale-110 active:scale-95 animate-float"
-    >
-      <div className={`
-        relative w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl 
-        bg-gradient-to-br ${color} 
-        flex items-center justify-center 
-        shadow-lg shadow-black/20 
-        transform transition-all duration-500
-        group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-${color.split('-')[1]}-500/40
-        before:content-[''] before:absolute before:inset-0 before:bg-white/20 before:rounded-2xl before:opacity-0 group-hover:before:opacity-100 before:transition-opacity
-      `}>
-        <Icon className="text-white w-8 h-8 md:w-10 md:h-10 drop-shadow-md" strokeWidth={1.5} />
-        {/* Glossy reflection effect */}
-        <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-2xl md:rounded-t-3xl pointer-events-none" />
-      </div>
-      <span className="text-xs md:text-sm text-white font-medium tracking-tight drop-shadow-md opacity-90 group-hover:opacity-100">
-        {label}
-      </span>
-    </a>
-  );
-};
-
-// 3. Project Card (Glassmorphism)
-const ProjectCard = ({ project }: { project: typeof PROJECTS[0]}) => {
-  return (
-    <div className="group relative overflow-hidden rounded-3xl bg-white/10 border border-white/20 backdrop-blur-md p-6 transition-all duration-500 hover:bg-white/20 hover:scale-[1.02] cursor-pointer">
-      <div className="flex items-start justify-between mb-4">
-        <div className={`p-3 rounded-2xl ${project.color} shadow-lg shadow-black/10`}>
-          <project.icon className="text-white w-6 h-6" />
-        </div>
-        <div className="bg-white/10 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <ExternalLink className="text-white w-4 h-4" />
-        </div>
-      </div>
-      
-      <h3 className="text-xl font-bold text-white mb-1 tracking-tight">{project.title}</h3>
-      <p className="text-xs text-blue-200 font-semibold uppercase tracking-wider mb-3">{project.category}</p>
-      <p className="text-sm text-white/80 leading-relaxed">{project.description}</p>
-      
-      {/* Hover Light Effect */}
-      <div className="absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine" />
-    </div>
-  );
-};
+const PROFILE_IMAGE_URL = PlaceHolderImages.find(p => p.id === 'prashant-profile')?.imageUrl || "/profile.jpg"; 
+const WALLPAPER_URL = PlaceHolderImages.find(p => p.id === 'os-wallpaper')?.imageUrl || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop";
 
 export default function App() {
   const [page, setPage] = useState(0); // 0 = Home, 1 = Work
@@ -223,6 +100,7 @@ export default function App() {
                       width={192}
                       height={192} 
                       className="w-full h-full rounded-full object-cover border-4 border-white/10 shadow-inner"
+                      data-ai-hint="man portrait"
                     />
                     {/* Status Indicator */}
                     <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 border-4 border-black/20 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.6)]" />
@@ -235,15 +113,15 @@ export default function App() {
                     Prashant Bhatt
                   </h1>
                   <p className="text-lg md:text-xl text-white/80 font-light tracking-wide flex items-center justify-center gap-2">
-                    <Terminal size={16} /> Banking Professional Exploring AI Agents & LLMs | Python | Solidity | Building FinTech Automation Tools
+                  💼 Banker | 💻 Digital Explorer From Blockchain to Agentic AI
                   </p>
                 </div>
               </div>
 
               {/* App Grid */}
               <div className="grid grid-cols-3 md:grid-cols-6 gap-y-8 gap-x-4 md:gap-8 max-w-4xl mx-auto pb-24 md:pb-32">
-                {SOCIAL_LINKS.map((app, i) => (
-                  <AppIcon key={app.id} {...app} style={{ animationDelay: `${i * 100}ms` }} />
+                {socialLinks.map((link, i) => (
+                  <AppIcon key={link.name} link={link} style={{ animationDelay: `${i * 100}ms` }} />
                 ))}
               </div>
 
@@ -272,7 +150,7 @@ export default function App() {
 
                 {/* Project Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
-                  {PROJECTS.map((project) => (
+                  {projectsData.map((project) => (
                     <ProjectCard key={project.id} project={project} />
                   ))}
                 </div>
