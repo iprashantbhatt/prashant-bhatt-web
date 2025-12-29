@@ -180,7 +180,7 @@ export default function App() {
 
   return (
     <div
-      className="relative w-full h-screen overflow-hidden bg-black font-sans selection:bg-blue-500/30"
+      className="relative w-full h-screen overflow-hidden bg-black font-sans selection:bg-blue-500/30 md:w-[90vw] md:h-[95vh] md:max-w-[1200px] md:max-h-[800px] md:rounded-[40px] md:border-[14px] md:border-black shadow-2xl"
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
