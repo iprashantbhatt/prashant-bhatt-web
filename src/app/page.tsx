@@ -14,7 +14,7 @@ import {
   Cpu, 
   Code, 
   Zap, 
-  ChevronUp, 
+  ChevronUp,
   ChevronDown,
   ExternalLink,
   Layers,
