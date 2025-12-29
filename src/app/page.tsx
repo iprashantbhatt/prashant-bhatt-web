@@ -179,13 +179,12 @@ export default function App() {
   };
 
   return (
-    <div className="w-full my-8 md:my-12 transform-style-3d transition-transform duration-500">
-      <div 
-        className="relative w-full max-w-sm md:max-w-4xl mx-auto h-[80vh] md:h-auto md:aspect-[4/3] rounded-[2rem] md:rounded-[4rem] overflow-hidden bg-black font-sans selection:bg-blue-500/30 shadow-2xl shadow-black/50 border-4 border-gray-800"
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
+    <div
+      className="relative w-full h-screen overflow-hidden bg-black font-sans selection:bg-blue-500/30"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
         {/* Background Wallpaper */}
         <div 
           className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-in-out scale-105"
@@ -301,6 +300,5 @@ export default function App() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
