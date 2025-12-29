@@ -29,7 +29,7 @@ import { projectsData } from '@/lib/projects';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 /* --- ASSETS & CONSTANTS --- */
-const PROFILE_IMAGE_URL = PlaceHolderImages.find(p => p.id === 'prashant-profile')?.imageUrl || "/profile.jpg"; 
+const PROFILE_IMAGE_URL = "/profile.jpg"; 
 const WALLPAPER_URL = PlaceHolderImages.find(p => p.id === 'os-wallpaper')?.imageUrl || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop";
 
 export default function App() {
