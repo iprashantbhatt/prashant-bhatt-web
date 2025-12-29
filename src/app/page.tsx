@@ -234,7 +234,7 @@ export default function App() {
                     Prashant Bhatt
                   </h1>
                   <p className="text-lg md:text-xl text-white/80 font-light tracking-wide flex items-center justify-center gap-2">
-                    <Terminal size={16} /> Banking Professional Exploring AI Agents &amp; LLMs | Python | Solidity | Building FinTech Automation Tools
+                    <Terminal size={16} /> Banking Professional Exploring AI Agents & LLMs | Python | Solidity | Building FinTech Automation Tools
                   </p>
                 </div>
               </div>
@@ -267,12 +267,6 @@ export default function App() {
                     <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">Projects</h2>
                     <p className="text-white/60">Selected works &amp; experiments</p>
                   </div>
-                  <button 
-                    onClick={() => setPage(0)}
-                    className="p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md transition-colors text-white"
-                  >
-                    <ChevronUp className="rotate-180" size={24} />
-                  </button>
                 </div>
 
                 {/* Project Grid */}
@@ -294,6 +288,14 @@ export default function App() {
                   </div>
                 </div>
 
+              </div>
+               {/* Swipe Indicator */}
+              <div 
+                className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
+                onClick={() => setPage(0)}
+              >
+                <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Up</span>
+                <ChevronUp size={24} />
               </div>
             </div>
 
