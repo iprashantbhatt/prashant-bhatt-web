@@ -15,6 +15,7 @@ import {
   Code, 
   Zap, 
   ChevronUp, 
+  ChevronDown,
   ExternalLink,
   Layers,
   Terminal,
@@ -294,8 +295,8 @@ export default function App() {
                 className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
                 onClick={() => setPage(0)}
               >
-                <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Up</span>
-                <ChevronUp size={24} />
+                <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Down</span>
+                <ChevronDown size={24} />
               </div>
             </div>
 
