@@ -2,24 +2,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { 
-  Wifi, 
-  Battery, 
-  Signal, 
-  Instagram, 
-  Linkedin, 
-  Github, 
-  Twitter, 
-  Mail, 
-  Briefcase, 
-  Cpu, 
-  Code, 
-  Zap, 
   ChevronUp,
   ChevronDown,
-  ExternalLink,
-  Layers,
-  Terminal,
-  Smartphone
 } from 'lucide-react';
 import StatusBar from '@/components/os/StatusBar';
 import AppIcon from '@/components/os/AppIcon';
@@ -27,6 +11,8 @@ import ProjectCard from '@/components/os/ProjectCard';
 import { socialLinks } from '@/lib/social-links';
 import { projectsData } from '@/lib/projects';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useIsMobile } from '@/hooks/use-mobile';
+
 
 /* --- ASSETS & CONSTANTS --- */
 const PROFILE_IMAGE_URL = "/profile.jpg"; 
@@ -60,10 +46,50 @@ export default function App() {
     }
   };
   
+  const isMobile = useIsMobile();
+  const isScrolling = useRef(false);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (isMobile || isScrolling.current) return;
+
+      isScrolling.current = true;
+      if (e.deltaY > 0) { // Scrolling down
+        setPage(p => Math.min(p + 1, 2));
+      } else { // Scrolling up
+        setPage(p => Math.max(p - 1, 0));
+      }
+
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+      scrollTimeout.current = setTimeout(() => {
+        isScrolling.current = false;
+      }, 1000); // 1-second cooldown
+    };
+    
+    const container = document.getElementById('main-container');
+    if(container) {
+        container.addEventListener('wheel', handleWheel);
+    }
+    
+    return () => {
+      if(container) {
+        container.removeEventListener('wheel', handleWheel);
+      }
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+    };
+  }, [isMobile]);
+
+
   const contactLink = socialLinks.find(link => link.name === 'Contact');
 
   return (
     <div
+      id="main-container"
       className="relative w-full h-screen overflow-hidden bg-black font-sans selection:bg-blue-500/30 md:w-[90vw] md:h-[95vh] md:max-w-[1200px] md:max-h-[800px] md:rounded-[40px] md:border-[14px] md:border-black shadow-2xl"
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
@@ -132,13 +158,15 @@ export default function App() {
               </div>
 
               {/* Swipe Indicator */}
-              <div 
-                className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
-                onClick={() => setPage(1)}
-              >
-                <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Up</span>
-                <ChevronUp size={24} />
-              </div>
+              {page === 0 && (
+                 <div 
+                  className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
+                  onClick={() => setPage(1)}
+                >
+                  <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Up</span>
+                  <ChevronUp size={24} />
+                </div>
+              )}
             </div>
 
             {/* --- PAGE 2: WORK / DEVELOPER --- */}
