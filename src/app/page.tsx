@@ -33,7 +33,7 @@ const PROFILE_IMAGE_URL = "/profile.jpg";
 const WALLPAPER_URL = PlaceHolderImages.find(p => p.id === 'os-wallpaper')?.imageUrl || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop";
 
 export default function App() {
-  const [page, setPage] = useState(0); // 0 = Home, 1 = Work
+  const [page, setPage] = useState(0); // 0 = Home, 1 = Work, 2 = Contact
   
   // Touch handlers for mobile swipe
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -52,9 +52,15 @@ export default function App() {
     const isUpSwipe = distance > 50;
     const isDownSwipe = distance < -50;
     
-    if (isUpSwipe && page === 0) setPage(1);
-    if (isDownSwipe && page === 1) setPage(0);
+    if (isUpSwipe) {
+      setPage(p => Math.min(p + 1, 2));
+    }
+    if (isDownSwipe) {
+      setPage(p => Math.max(p - 1, 0));
+    }
   };
+  
+  const contactLink = socialLinks.find(link => link.name === 'Contact');
 
   return (
     <div
@@ -68,7 +74,7 @@ export default function App() {
           className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-in-out scale-105"
           style={{ 
             backgroundImage: `url(${WALLPAPER_URL})`,
-            filter: page === 1 ? 'blur(20px) brightness(0.6)' : 'blur(0px) brightness(1)'
+            filter: page !== 0 ? 'blur(20px) brightness(0.6)' : 'blur(0px) brightness(1)'
           }}
         />
         
@@ -168,10 +174,34 @@ export default function App() {
                 </div>
 
               </div>
-               {/* Swipe Indicator */}
+               {/* Swipe Indicators */}
+               <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center">
+                <div 
+                  className="cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
+                  onClick={() => setPage(2)}
+                >
+                  <ChevronUp size={24} />
+                </div>
+                <div 
+                  className="cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
+                  onClick={() => setPage(0)}
+                >
+                  <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Down</span>
+                  <ChevronDown size={24} />
+                </div>
+              </div>
+            </div>
+
+            {/* --- PAGE 3: CONTACT --- */}
+            <div className="absolute top-[200%] left-0 w-full h-full flex flex-col items-center justify-center p-6 md:p-12 text-center">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Get in Touch</h2>
+              <p className="text-white/60 mb-8 max-w-md">
+                Have a project in mind, a question, or just want to connect? Feel free to reach out.
+              </p>
+              {contactLink && <AppIcon link={contactLink} />}
               <div 
                 className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
-                onClick={() => setPage(0)}
+                onClick={() => setPage(1)}
               >
                 <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Down</span>
                 <ChevronDown size={24} />
