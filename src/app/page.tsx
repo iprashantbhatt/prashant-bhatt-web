@@ -159,13 +159,14 @@ export default function App() {
 
               {/* Swipe Indicator */}
               {page === 0 && (
-                 <div 
-                  className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
-                  onClick={() => setPage(1)}
-                >
-                  <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Up</span>
-                  <ChevronUp size={24} />
-                </div>
+                 <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+                   <button
+                     onClick={() => setPage(1)}
+                     className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md animate-bounce hover:bg-white/20 transition-all"
+                   >
+                     <ChevronUp size={24} className="text-white" />
+                   </button>
+                 </div>
               )}
             </div>
 
@@ -191,20 +192,19 @@ export default function App() {
 
               </div>
                {/* Swipe Indicators */}
-               <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center">
-                <div 
-                  className="cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
+               <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2">
+                <button
                   onClick={() => setPage(2)}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md animate-bounce hover:bg-white/20 transition-all"
                 >
-                  <ChevronUp size={24} />
-                </div>
-                <div 
-                  className="cursor-pointer text-white/50 hover:text-white transition-colors"
+                  <ChevronUp size={24} className="text-white" />
+                </button>
+                <button
                   onClick={() => setPage(0)}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md hover:bg-white/20 transition-all"
                 >
-                  <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Down</span>
-                  <ChevronDown size={24} />
-                </div>
+                  <ChevronDown size={24} className="text-white" />
+                </button>
               </div>
             </div>
 
@@ -221,9 +221,9 @@ export default function App() {
 
                 {/* Additional Section: Tech Stack */}
                 <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 max-w-3xl mx-auto">
-                  <h3 className="text-2xl font-bold text-white mb-6">Technologies</h3>
+                  <h3 className="text-2xl font-bold text-white mb-6">Technologies Using</h3>
                   <div className="flex flex-wrap gap-3 justify-center">
-                    {['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'TensorFlow', 'Three.js', 'Tailwind', 'PostgreSQL', 'Docker', 'AWS'].map((tech) => (
+                    {['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'TensorFlow', 'Three.js', 'Tailwind', 'PostgreSQL', ].map((tech) => (
                       <span key={tech} className="px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium hover:bg-white/20 cursor-default transition-colors border border-white/5">
                         {tech}
                       </span>
@@ -232,12 +232,13 @@ export default function App() {
                 </div>
               </div>
 
-              <div 
-                className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
-                onClick={() => setPage(1)}
-              >
-                <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Down</span>
-                <ChevronDown size={24} />
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+                <button
+                  onClick={() => setPage(1)}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md animate-bounce hover:bg-white/20 transition-all"
+                >
+                  <ChevronDown size={24} className="text-white" />
+                </button>
               </div>
             </div>
 
