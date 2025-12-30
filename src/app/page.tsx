@@ -12,6 +12,7 @@ import { socialLinks } from '@/lib/social-links';
 import { projectsData } from '@/lib/projects';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { useIsMobile } from '@/hooks/use-mobile';
+import ScrollMouse from '@/components/os/ScrollMouse';
 
 
 /* --- ASSETS & CONSTANTS --- */
@@ -132,12 +133,7 @@ export default function App() {
               {/* Swipe Indicator */}
               {page === 0 && (
                  <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-                   <button
-                     onClick={() => setPage(1)}
-                     className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md animate-bounce hover:bg-white/20 transition-all"
-                   >
-                     <ChevronUp size={24} className="text-white" />
-                   </button>
+                   <ScrollMouse onClick={() => setPage(1)} />
                  </div>
               )}
             </div>
@@ -166,19 +162,19 @@ export default function App() {
               </div>
                {/* Swipe Indicators */}
                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2">
-                <button
+                 <button
                   onClick={() => setPage(2)}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md animate-bounce hover:bg-white/20 transition-all"
-                >
-                  <ChevronUp size={24} className="text-white" />
-                </button>
-                <button
-                  onClick={() => setPage(0)}
                   className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md hover:bg-white/20 transition-all"
-                >
-                  <ChevronDown size={24} className="text-white" />
-                </button>
-              </div>
+                 >
+                  <ChevronUp size={24} className="text-white" />
+                 </button>
+                 <button
+                   onClick={() => setPage(0)}
+                   className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md hover:bg-white/20 transition-all"
+                 >
+                   <ChevronDown size={24} className="text-white" />
+                 </button>
+               </div>
             </div>
 
             {/* --- PAGE 3: CONTACT --- */}
@@ -208,7 +204,7 @@ export default function App() {
               <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
                 <button
                   onClick={() => setPage(1)}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md animate-bounce hover:bg-white/20 transition-all"
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md hover:bg-white/20 transition-all"
                 >
                   <ChevronDown size={24} className="text-white" />
                 </button>
