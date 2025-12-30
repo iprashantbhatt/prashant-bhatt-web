@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   // 1. The Title Google sees
-  title: "Prashant Bhatt | Digital Explorer & Banker",
+  title: "Prashant Bhatt",
 
   // 2. The description under the link on Google
   description:
@@ -22,7 +22,6 @@ export const metadata: Metadata = {
     "Web Developer",
     "Next.js",
     "India",
-    "PrashantOS",
   ],
 
   // 4. How it looks when shared on Twitter/X or LinkedIn (Open Graph)
