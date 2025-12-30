@@ -123,7 +123,7 @@ export default function App() {
               </div>
 
               {/* App Grid */}
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-y-8 gap-x-4 md:gap-8 max-w-4xl mx-auto pb-24 md:pb-32">
+              <div className="grid grid-cols-3 md:grid-cols-6 gap-y-8 gap-x-4 md:gap-8 max-w-4xl mx-auto pb-8 md:pb-12">
                 {socialLinks.map((link, i) => (
                   <AppIcon key={link.name} link={link} />
                 ))}
