@@ -1,4 +1,5 @@
 'use client';
+import { useMemo } from 'react';
 import type { SocialLink } from '@/lib/social-links';
 
 type AppIconProps = {
@@ -12,17 +13,19 @@ export default function AppIcon({ link, onClick }: AppIconProps) {
   const btnColor = link.color;
   const shadowColor = link.shadowColor;
 
-  const style = {
+  const style = useMemo(() => ({
     '--btn-color': btnColor,
     '--shadow-color': shadowColor,
-  } as React.CSSProperties;
+    'animationDelay': `${Math.random() * 2}s`
+  } as React.CSSProperties), [btnColor, shadowColor]);
 
 
   return (
     <a 
       href={link.href} 
       onClick={onClick}
-      className="group relative flex flex-col items-center gap-2 cursor-pointer transition-transform duration-300 active:scale-95"
+      className="group relative flex flex-col items-center gap-2 cursor-pointer"
+      style={style}
     >
       <div 
         className={`
@@ -32,8 +35,8 @@ export default function AppIcon({ link, onClick }: AppIconProps) {
           transition-transform duration-150 ease-in-out
           shadow-btn-3d hover:shadow-btn-3d-hover active:shadow-btn-3d-active
           hover:-translate-y-1 active:translate-y-1
+          animate-float
         `}
-        style={style}
       >
         <Icon className="text-white w-8 h-8 md:w-10 md:h-10 drop-shadow-md transition-transform duration-200 group-hover:scale-110 group-hover:-rotate-6" strokeWidth={1.5} />
          {/* Glossy reflection effect */}
