@@ -70,6 +70,11 @@ export default {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      boxShadow: {
+        'btn-3d': '0px 5px 0px var(--shadow-color), 0px 10px 15px -5px rgba(0,0,0,0.3), inset 0px 2px 1px rgba(255,255,255,0.25), inset 0px -2px 1px rgba(0,0,0,0.1)',
+        'btn-3d-hover': '0px 7px 0px var(--shadow-color), 0px 15px 20px -10px rgba(0,0,0,0.3), inset 0px 2px 1px rgba(255,255,255,0.3), inset 0px -2px 1px rgba(0,0,0,0.1)',
+        'btn-3d-active': '0px 0px 0px var(--shadow-color), 0px 0px 5px rgba(0,0,0,0.1), inset 0px 2px 1px rgba(255,255,255,0.25), inset 0px -2px 1px rgba(0,0,0,0.1)',
+      },
       keyframes: {
         'accordion-down': {
           from: {
