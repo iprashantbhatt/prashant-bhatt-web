@@ -21,31 +21,6 @@ const WALLPAPER_URL = PlaceHolderImages.find(p => p.id === 'os-wallpaper')?.imag
 export default function App() {
   const [page, setPage] = useState(0); // 0 = Home, 1 = Work, 2 = Contact
   
-  // Touch handlers for mobile swipe
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null); 
-    setTouchStart(e.targetTouches[0].clientY);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => setTouchEnd(e.targetTouches[0].clientY);
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isUpSwipe = distance > 50;
-    const isDownSwipe = distance < -50;
-    
-    if (isUpSwipe) {
-      setPage(p => Math.min(p + 1, 2));
-    }
-    if (isDownSwipe) {
-      setPage(p => Math.max(p - 1, 0));
-    }
-  };
-  
   const isMobile = useIsMobile();
   const isScrolling = useRef(false);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -91,9 +66,6 @@ export default function App() {
     <div
       id="main-container"
       className="relative w-full h-screen overflow-hidden bg-black font-sans selection:bg-blue-500/30 md:w-[90vw] md:h-[95vh] md:max-w-[1200px] md:max-h-[800px] md:rounded-[40px] md:border-[14px] md:border-black shadow-2xl"
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
     >
         {/* Background Wallpaper */}
         <div 
