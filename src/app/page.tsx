@@ -45,14 +45,13 @@ export default function App() {
       }, 1000); // 1-second cooldown
     };
     
-    const container = document.getElementById('main-container');
-    if(container) {
-        container.addEventListener('wheel', handleWheel);
+    if (!isMobile) {
+        document.addEventListener('wheel', handleWheel);
     }
     
     return () => {
-      if(container) {
-        container.removeEventListener('wheel', handleWheel);
+      if (!isMobile) {
+        document.removeEventListener('wheel', handleWheel);
       }
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current);
@@ -163,17 +162,12 @@ export default function App() {
                {/* Swipe Indicators */}
                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2">
                  <button
-                  onClick={() => setPage(2)}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md hover:bg-white/20 transition-all"
+                  onClick={() => setPage(0)}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md hover:bg-white/20 transition-all rotate-180"
                  >
-                  <ChevronUp size={24} className="text-white" />
+                  <ChevronDown size={24} className="text-white" />
                  </button>
-                 <button
-                   onClick={() => setPage(0)}
-                   className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md hover:bg-white/20 transition-all"
-                 >
-                   <ChevronDown size={24} className="text-white" />
-                 </button>
+                 <ScrollMouse onClick={() => setPage(2)} />
                </div>
             </div>
 
@@ -206,7 +200,7 @@ export default function App() {
                   onClick={() => setPage(1)}
                   className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md hover:bg-white/20 transition-all"
                 >
-                  <ChevronDown size={24} className="text-white" />
+                  <ChevronUp size={24} className="text-white" />
                 </button>
               </div>
             </div>
