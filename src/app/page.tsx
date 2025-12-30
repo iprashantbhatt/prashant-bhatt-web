@@ -171,25 +171,26 @@ export default function App() {
             </div>
 
             {/* --- PAGE 2: WORK / DEVELOPER --- */}
-            <div className="absolute top-[100%] left-0 w-full h-full flex flex-col overflow-y-auto custom-scrollbar">
-              
-              <div className="w-full max-w-6xl mx-auto px-6 pt-20 pb-12">
-                
-                {/* Header */}
-                <div className="flex items-center justify-between mb-12">
-                  <div>
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">Projects</h2>
-                    <p className="text-white/60">Selected works &amp; experiments</p>
+            <div className="absolute top-[100%] left-0 w-full h-full flex flex-col">
+              <div className="flex-1 overflow-y-auto custom-scrollbar">
+                <div className="w-full max-w-6xl mx-auto px-6 pt-20 pb-24">
+                  
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-12">
+                    <div>
+                      <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">Projects</h2>
+                      <p className="text-white/60">Selected works &amp; experiments</p>
+                    </div>
                   </div>
-                </div>
 
-                {/* Project Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
-                  {projectsData.map((project) => (
-                    <ProjectCard key={project.id} project={project} />
-                  ))}
-                </div>
+                  {/* Project Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
+                    {projectsData.map((project) => (
+                      <ProjectCard key={project.id} project={project} />
+                    ))}
+                  </div>
 
+                </div>
               </div>
                {/* Swipe Indicators */}
                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2">
