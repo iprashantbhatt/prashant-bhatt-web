@@ -127,7 +127,7 @@ export default function App() {
               {/* App Grid */}
               <div className="grid grid-cols-3 md:grid-cols-6 gap-y-8 gap-x-4 md:gap-8 max-w-4xl mx-auto pb-24 md:pb-32">
                 {socialLinks.map((link, i) => (
-                  <AppIcon key={link.name} link={link} style={{ animationDelay: `${i * 100}ms` }} />
+                  <AppIcon key={link.name} link={link} />
                 ))}
               </div>
 
@@ -161,18 +161,6 @@ export default function App() {
                   ))}
                 </div>
 
-                {/* Additional Section: Tech Stack */}
-                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
-                  <h3 className="text-2xl font-bold text-white mb-6">Technologies</h3>
-                  <div className="flex flex-wrap gap-3">
-                    {['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'TensorFlow', 'Three.js', 'Tailwind', 'PostgreSQL', 'Docker', 'AWS'].map((tech) => (
-                      <span key={tech} className="px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium hover:bg-white/20 cursor-default transition-colors border border-white/5">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
               </div>
                {/* Swipe Indicators */}
                <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center">
@@ -183,7 +171,7 @@ export default function App() {
                   <ChevronUp size={24} />
                 </div>
                 <div 
-                  className="cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
+                  className="cursor-pointer text-white/50 hover:text-white transition-colors"
                   onClick={() => setPage(0)}
                 >
                   <span className="text-xs font-medium uppercase tracking-widest mb-1">Swipe Down</span>
@@ -194,11 +182,28 @@ export default function App() {
 
             {/* --- PAGE 3: CONTACT --- */}
             <div className="absolute top-[200%] left-0 w-full h-full flex flex-col items-center justify-center p-6 md:p-12 text-center">
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Get in Touch</h2>
-              <p className="text-white/60 mb-8 max-w-md">
-                Have a project in mind, a question, or just want to connect? Feel free to reach out.
-              </p>
-              {contactLink && <AppIcon link={contactLink} />}
+              <div className="space-y-8">
+                <div>
+                  <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Get in Touch</h2>
+                  <p className="text-white/60 mb-8 max-w-md mx-auto">
+                    Have a project in mind, a question, or just want to connect? Feel free to reach out.
+                  </p>
+                  {contactLink && <AppIcon link={contactLink} />}
+                </div>
+
+                {/* Additional Section: Tech Stack */}
+                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 max-w-3xl mx-auto">
+                  <h3 className="text-2xl font-bold text-white mb-6">Technologies</h3>
+                  <div className="flex flex-wrap gap-3 justify-center">
+                    {['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'TensorFlow', 'Three.js', 'Tailwind', 'PostgreSQL', 'Docker', 'AWS'].map((tech) => (
+                      <span key={tech} className="px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium hover:bg-white/20 cursor-default transition-colors border border-white/5">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
               <div 
                 className="absolute bottom-2 left-0 right-0 flex flex-col items-center justify-center cursor-pointer animate-bounce text-white/50 hover:text-white transition-colors"
                 onClick={() => setPage(1)}
