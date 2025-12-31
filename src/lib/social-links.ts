@@ -10,18 +10,11 @@ export type SocialLink = {
 
 export const socialLinks: SocialLink[] = [
   {
-    name: 'Instagram',
-    href: 'https://www.instagram.com/iprashantbhatt',
-    icon: Instagram,
-    color: '#E1306C',
-    shadowColor: '#8a1d60',
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/prashantbhatt1/',
-    icon: Linkedin,
-    color: '#0077b5',
-    shadowColor: '#004d75',
+    name: 'X',
+    href: 'https://x.com/iamprashantb',
+    icon: Twitter,
+    color: '#1a1a1a',
+    shadowColor: '#000000',
   },
   {
     name: 'GitHub',
@@ -31,11 +24,18 @@ export const socialLinks: SocialLink[] = [
     shadowColor: '#1a1e22',
   },
   {
-    name: 'X',
-    href: 'https://x.com/iamprashantb',
-    icon: Twitter,
-    color: '#1a1a1a',
-    shadowColor: '#000000',
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/prashantbhatt1/',
+    icon: Linkedin,
+    color: '#0077b5',
+    shadowColor: '#004d75',
+  },
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/iprashantbhatt',
+    icon: Instagram,
+    color: '#E1306C',
+    shadowColor: '#8a1d60',
   },
   {
     name: 'Blog',
