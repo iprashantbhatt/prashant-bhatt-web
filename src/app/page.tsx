@@ -73,7 +73,7 @@ export default function App() {
             </div>
 
             {/* App Grid */}
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-y-8 gap-x-4 md:gap-8 max-w-4xl mx-auto pb-8 md:pb-12">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-y-8 gap-x-4 md:gap-8 max-w-4xl mx-auto pb-16 md:pb-24">
               {socialLinks.map((link, i) => (
                 <AppIcon key={link.name} link={link} />
               ))}
@@ -81,7 +81,7 @@ export default function App() {
           </div>
 
           {/* --- PAGE 2: WORK / DEVELOPER --- */}
-          <div className="w-full min-h-screen bg-black/30 backdrop-blur-xl flex flex-col">
+          <div className="w-full min-h-screen flex flex-col">
             <div className="flex-1">
               <div className="w-full max-w-6xl mx-auto px-6 pt-20 pb-24">
                 
@@ -105,7 +105,7 @@ export default function App() {
           </div>
 
           {/* --- PAGE 3: CONTACT --- */}
-          <div className="w-full min-h-screen bg-black/50 flex flex-col items-center justify-center p-6 md:p-12 text-center">
+          <div className="w-full min-h-screen flex flex-col items-center justify-center p-6 md:p-12 text-center">
             <div className="space-y-8">
               <div>
                 <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Get in Touch</h2>
