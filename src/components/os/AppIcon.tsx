@@ -1,5 +1,5 @@
 'use client';
-import { useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import type { SocialLink } from '@/lib/social-links';
 
 type AppIconProps = {
@@ -9,6 +9,12 @@ type AppIconProps = {
 
 export default function AppIcon({ link, onClick }: AppIconProps) {
   const Icon = link.icon;
+  const [animationDelay, setAnimationDelay] = useState('0s');
+
+  useEffect(() => {
+    // This ensures Math.random() is only called on the client, after hydration
+    setAnimationDelay(`${Math.random() * 2}s`);
+  }, []);
 
   const btnColor = link.color;
   const shadowColor = link.shadowColor;
@@ -16,8 +22,8 @@ export default function AppIcon({ link, onClick }: AppIconProps) {
   const style = useMemo(() => ({
     '--btn-color': btnColor,
     '--shadow-color': shadowColor,
-    'animationDelay': `${Math.random() * 2}s`
-  } as React.CSSProperties), [btnColor, shadowColor]);
+    'animationDelay': animationDelay
+  } as React.CSSProperties), [btnColor, shadowColor, animationDelay]);
 
 
   return (
