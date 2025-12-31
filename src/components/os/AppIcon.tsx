@@ -43,6 +43,7 @@ export default function AppIcon({ link, onClick }: AppIconProps) {
           hover:-translate-y-1 active:translate-y-1
           animate-float
         `}
+        style={{ background: link.name === 'Instagram' ? 'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)' : btnColor }}
       >
         <Icon className="text-white w-8 h-8 md:w-10 md:h-10 drop-shadow-md transition-transform duration-200 group-hover:scale-110 group-hover:-rotate-6" strokeWidth={1.5} />
          {/* Glossy reflection effect */}
