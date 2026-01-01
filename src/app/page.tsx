@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import StatusBar from '@/components/os/StatusBar';
 import AppIcon from '@/components/os/AppIcon';
 import ProjectCard from '@/components/os/ProjectCard';
 import { socialLinks } from '@/lib/social-links';
@@ -16,7 +15,6 @@ export default function App() {
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 selection:bg-blue-500/30 font-sans">
-      <StatusBar />
       
       {/* --- PAGE 1: HOME / IDENTITY --- */}
       <section className="w-full min-h-screen flex flex-col items-center justify-center text-center py-20">
