@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   // 1. The Title Google sees
-  title: "Prashant Bhatt",
+  title: "PrashantOS",
   
   // 2. The description under the link on Google
   description: "Personal portfolio of Prashant Bhatt. Exploring the intersection of Banking, AI Technology, and Web Development. Building agents and futuristic web experiences.",
