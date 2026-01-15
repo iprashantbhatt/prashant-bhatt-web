@@ -37,7 +37,14 @@
     @apply border-border;
   }
   body {
-    @apply bg-gradient-to-br from-gray-900 via-gray-800 to-black text-foreground;
+    @apply bg-black text-foreground;
+    background: linear-gradient(
+      135deg,
+      #0f2027,
+      #203a43,
+      #2c5364
+    );
+    min-height: 100vh;
   }
 }
 
@@ -84,4 +91,18 @@
 
 .animate-float {
   animation: float 4s ease-in-out infinite;
+}
+
+@keyframes blob-anim-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(15vw, -10vh) scale(1.1); }
+  50% { transform: translate(5vw, 20vh) scale(0.9); }
+  75% { transform: translate(-10vw, -5vh) scale(1.05); }
+}
+
+@keyframes blob-anim-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-12vw, 8vh) scale(0.95); }
+  50% { transform: translate(-3vw, -15vh) scale(1.05); }
+  75% { transform: translate(10vw, 5vh) scale(0.9); }
 }
