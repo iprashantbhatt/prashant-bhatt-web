@@ -3,6 +3,9 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  // 0. The base URL for the site
+  metadataBase: new URL("https://prashantbhatt.net"),
+
   // 1. The Title Google sees
   title: "Prashant Bhatt",
   
@@ -48,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24">
+        <main className="relative z-10 flex min-h-screen flex-col items-center justify-center p-4 md:p-24">
           {children}
         </main>
         <Toaster />
